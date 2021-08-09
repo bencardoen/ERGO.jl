@@ -1,5 +1,4 @@
 # ERGO: Efficient Recurrent Graph Optimized Emitter Density Estimation in Single Molecule Localization Microscopy
-[![Build Status](https://travis-ci.com/bencardoen/ERGO.jl.svg?token=Vgy3r9mpYNd3nULfTYZT&branch=main)](https://travis-ci.com/bencardoen/ERGO.jl)
 
 This repository holds the source accompanying our [IEEE Transactions in Medical Imaging 2020 paper](http://www.cs.sfu.ca/~hamarneh/ecopy/tmi2020.pdf).
 
