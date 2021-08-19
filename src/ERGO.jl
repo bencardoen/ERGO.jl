@@ -245,7 +245,7 @@ function framecorrelation(images, randomize=false, seed=0, step=1)
     if randomize
 		if seed != -1
         	Random.seed!(seed)
-			@info "Using seed $seed for RNG"
+			@debug "Using seed $seed for RNG"
 		else
 			@warn "Seed not set, not reproducible results will follow !!"
 		end

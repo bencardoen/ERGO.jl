@@ -32,6 +32,23 @@ using Statistics
         end
     end
 
+    @testset "framecorrelation" begin
+        # function framecorrelation(images, randomize=false, seed=0, step=1)
+        Random.seed!(42)
+        for i in 1:100
+            frames = [rand(100, 100) for i in 1:100]
+            ps = framecorrelation(frames, false, 1, 1)
+            qs = framecorrelation(frames, true, 1, 1)
+            zs = framecorrelation(frames, true, 4, 1)
+            @test qs != zs
+            @test ps != qs
+            X = ones(100, 100)
+            frames = [X .+= (rand(100, 100)/10) for i in 1:100]
+            ps = framecorrelation(frames, false, 1, 1)
+            @test all(ps .>= 0.85)
+        end
+    end
+
     @testset "norm" begin
         xs = [1 2 3]
         nm = normimg(xs)
