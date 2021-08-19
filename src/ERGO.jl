@@ -31,7 +31,7 @@ import ProgressMeter.@showprogress
 export parseFrame, writeTrainingData, gmsm, gm, check, to_cc, harmonic_pair, geom_pair, peaks, centernorm,
 buildAdjMat, scoreCC, framecorrelation, parseFixedImages, parseFixedFrame, writeTrainingData,
 findCentroids, buildGraph, buildSparseGraph, connectedComponents, collect_results, procresults,
-centernorm, normimg, tomask, aszero, mcc
+centernorm, normimg, tomask, aszero, mcc, pearsoncorrelation
 
 
 """
@@ -226,7 +226,7 @@ end
 """
 	Frame correlation (Pearson)
 """
-function pcorr(imgi, imgj)
+function pearsoncorrelation(imgi, imgj)
     μ_i = Statistics.mean(imgi)
     μ_j = Statistics.mean(imgj)
     rij = sum((imgi .- μ_i).*(imgj .- μ_j)) / (√( sum((imgi .- μ_i).^2)) * √( sum((imgj .- μ_j).^2)) )
@@ -251,7 +251,7 @@ function framecorrelation(images, randomize=false, seed=0, step=1)
 		end
         images = Random.shuffle(images)
 	end
-    return [pcorr(images[i], images[i+step]) for i in 1:N-step]
+    return [pearsoncorrelation(images[i], images[i+step]) for i in 1:N-step]
 end
 
 """

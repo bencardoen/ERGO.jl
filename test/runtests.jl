@@ -20,6 +20,18 @@ using Statistics
 
 @testset "ERGO.jl" begin
 
+    @testset "pcor" begin
+        Random.seed!(42)
+        for i in 1:100
+            X = rand(100, 100)
+            Y = rand(100, 100)
+            p = pearsoncorrelation(X, Y)
+            @test p != 1
+            p = pearsoncorrelation(X, X)
+            @test isapprox(p, 1, atol=0.1)
+        end
+    end
+
     @testset "norm" begin
         xs = [1 2 3]
         nm = normimg(xs)
@@ -60,6 +72,7 @@ using Statistics
         @test size(cc2)[1] == 2
         @test size(cc1)[1] == 1
     end
+
     @testset "gmsm" begin
         Random.seed!(42)
         b = 1 .+ rand(100)
