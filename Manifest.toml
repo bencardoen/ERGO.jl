@@ -297,12 +297,6 @@ git-tree-sha1 = "b83e3125048a9c3158cbb7ca423790c7b1b57bea"
 uuid = "28b8d3ca-fb5f-59d9-8090-bfdbd6d07a71"
 version = "0.57.5"
 
-[[GRUtils]]
-deps = ["GR", "LinearAlgebra"]
-git-tree-sha1 = "265f7d3f57f388e5c395a8bed3729262863581bb"
-uuid = "0337cf30-a0fd-11e9-31db-a79914c9d7ac"
-version = "0.6.1"
-
 [[GR_jll]]
 deps = ["Artifacts", "Bzip2_jll", "Cairo_jll", "FFMPEG_jll", "Fontconfig_jll", "GLFW_jll", "JLLWrappers", "JpegTurbo_jll", "Libdl", "Libtiff_jll", "Pixman_jll", "Pkg", "Qt5Base_jll", "Zlib_jll", "libpng_jll"]
 git-tree-sha1 = "d59e8320c2747553788e4fc42231489cc602fa50"

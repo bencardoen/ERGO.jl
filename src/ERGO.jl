@@ -35,7 +35,9 @@ centernorm, normimg, tomask, aszero, mcc
 
 
 """
-	Utility function to binarize an image.
+    tomask(img)
+
+Utility function to binarize argument
 """
 function tomask(img)
     c = copy(img)
@@ -44,8 +46,10 @@ function tomask(img)
 end
 
 """
-	Normalize 2/3D image
-	center = true : (a+min(a))/range(a)
+	normimg(img[, center=false])
+
+Normalize 2/3D image
+if center = true : (a+min(a))/range(a)
 """
 function normimg(img, center=false)
 	@assert(! any(isnan.(img)))
@@ -71,7 +75,9 @@ function _normimg(img, center=false)
 end
 
 """
-	Shorthand to get a zeroed out copy
+	aszero(x)
+
+Utility function to return a zeroed copy of the argument
 """
 function aszero(x)
     return zeros(eltype(x), size(x))
@@ -143,10 +149,10 @@ end
 """
     gmsm(vals)
 
-    Compute the geometric mean and standard deviation. Only meaningful for values R+
-    Vals is filtered for zero entries. (vals = vals[vals .> zero(eltype(vals))]) to avoid collapsing results.
+Compute the geometric mean and standard deviation. Only meaningful for values R+
+Vals is filtered for zero entries. (vals = vals[vals .> zero(eltype(vals))]) to avoid collapsing results.
 
-	Returns geometric {mean, standard deviation}
+Returns geometric {mean, standard deviation}
 
 """
 function gmsm(vs)
@@ -161,7 +167,8 @@ end
 
 """
 	gm(vals)
-	Return the geometric mean of non-zero values
+
+Return the geometric mean of non-zero values
 """
 function gm(vs)
 	return gmsm(vs)[1]
