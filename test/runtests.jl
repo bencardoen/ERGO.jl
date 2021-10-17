@@ -64,6 +64,8 @@ using Statistics
             cni = normimg(img, true)
             @test all(0 .<= cni .<= 1)
         end
+        m = normimg(zeros(10,10))
+        @test iszero(m)
     end
 
     @testset "mcc" begin
