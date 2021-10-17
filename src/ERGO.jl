@@ -52,6 +52,9 @@ Normalize 2/3D image
 if center = true : (a+min(a))/range(a)
 """
 function normimg(img, center=false)
+    if iszero(img)
+		return copy(img)
+	end
 	@assert(! any(isnan.(img)))
 	if length(size(img)) == 2
 		return _normimg(img, center)
