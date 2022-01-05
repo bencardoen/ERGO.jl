@@ -5,6 +5,9 @@ This repository holds the source accompanying our [IEEE Transactions in Medical 
 ### CI Tests
 [![CircleCI](https://circleci.com/gh/bencardoen/ERGO.jl/tree/main.svg?style=svg)](https://circleci.com/gh/bencardoen/ERGO.jl/tree/main)
 
+### Coverage
+[![codecov](https://codecov.io/gh/bencardoen/ERGO.jl/branch/main/graph/badge.svg?token=8UFYOHZTOU)](https://codecov.io/gh/bencardoen/ERGO.jl)
+
 ### Repository organization
 
 [ERGO](https://github.com/bencardoen/ERGO) has 2 stages:
