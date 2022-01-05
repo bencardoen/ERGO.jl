@@ -31,7 +31,7 @@ import ProgressMeter.@showprogress
 export parseFrame, writeTrainingData, gmsm, gm, check, to_cc, harmonic_pair, geom_pair, peaks, centernorm,
 buildAdjMat, scoreCC, framecorrelation, parseFixedImages, parseFixedFrame, writeTrainingData,
 findCentroids, buildGraph, buildSparseGraph, connectedComponents, collect_results, procresults,
-centernorm, normimg, tomask, aszero, mcc, pearsoncorrelation
+centernorm, normimg, tomask, aszero, mcc, pearsoncorrelation, ifc
 
 
 """

@@ -66,6 +66,8 @@ using Statistics
         end
         m = normimg(zeros(10,10))
         @test iszero(m)
+        m = normimg(zeros(10,10,10))
+        @test iszero(m)
     end
 
     @testset "mcc" begin
@@ -90,6 +92,19 @@ using Statistics
         @test size(cc3)[1] == N
         @test size(cc2)[1] == 2
         @test size(cc1)[1] == 1
+    end
+
+    @testset "gm" begin
+        Random.seed!(42)
+        b = 1 .+ rand(100)
+        _g = gm(b)
+        @test _g <= Statistics.mean(b)
+    end
+
+    @testset "peaks" begin
+        Random.seed!(42)
+        a = rand(100, 100)
+        _ = peaks(a)
     end
 
     @testset "gmsm" begin
