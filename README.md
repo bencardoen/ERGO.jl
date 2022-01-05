@@ -2,6 +2,9 @@
 
 This repository holds the source accompanying our [IEEE Transactions in Medical Imaging 2020 paper](http://www.cs.sfu.ca/~hamarneh/ecopy/tmi2020.pdf).
 
+### CI Tests
+[![CircleCI](https://circleci.com/gh/bencardoen/ERGO.jl/tree/main.svg?style=svg)](https://circleci.com/gh/bencardoen/ERGO.jl/tree/main)
+
 ### Repository organization
 
 [ERGO](https://github.com/bencardoen/ERGO) has 2 stages:
