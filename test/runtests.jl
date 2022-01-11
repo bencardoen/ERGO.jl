@@ -17,6 +17,7 @@ using Test
 using ERGO
 using Random
 using Statistics
+import Images
 
 @testset "ERGO.jl" begin
 
@@ -46,6 +47,42 @@ using Statistics
             frames = [X .+= (rand(100, 100)/10) for i in 1:100]
             ps = framecorrelation(frames, false, 1, 1)
             @test all(ps .>= 0.85)
+            ps = framecorrelation(frames, false, -1, 1)
+            @test all(ps .>= 0.5)
+        end
+    end
+
+    @testset "ifcfiles" begin
+        td = mktempdir()
+        Random.seed!(42)
+        N = 10
+        imgs = []
+        for i in 1:N
+            img = rand(10, 20)
+            imgname = joinpath(td, "$i.tif")
+            Images.save(imgname, img)
+            push!(imgs, imgname)
+        end
+        #function ifc(images, randomize=false, seed=0, step=1)
+        r0 = ifc(imgs, false, 0, 1)
+        r1 = ifc(imgs, true, 0, 1)
+        r2 = ifc(imgs, false, 0, 2)
+        @test r0[1] != r1[1]
+        @test r2[1] != r1[1]
+    end
+
+    @testset "ccd" begin
+        # function check(coord, m, M, b)
+#645	    return m+b < coord < M-b
+#646	end
+        m, M = 1, 10
+        b = 0
+        for coord in 2:9
+            @test check(coord, m, M, b)
+        end
+        b = 1
+        for coord in 3:8
+            @test check(coord, m, M, b)
         end
     end
 
@@ -68,6 +105,26 @@ using Statistics
         @test iszero(m)
         m = normimg(zeros(10,10,10))
         @test iszero(m)
+        m = normimg(rand(10,10,10))
+        @test !isnothing(m)
+    end
+
+    @testset "gmpr" begin
+        x, y = 0, 0.0
+        r = geom_pair(x, y)
+        @test r == 0
+        x = 1.0
+        r = geom_pair(x, y)
+        @test r == 0
+        y = 2.0
+        r = geom_pair(x, y)
+        @test isapprox(r, √2.0)
+    end
+
+    @testset "hmpr" begin
+        x, y = zeros(10), zeros(10)
+        res = harmonic_pair(x, y)
+        @test all(res .== 0)
     end
 
     @testset "mcc" begin
@@ -104,7 +161,8 @@ using Statistics
     @testset "peaks" begin
         Random.seed!(42)
         a = rand(100, 100)
-        _ = peaks(a)
+        p = peaks(a)
+        @test !isnothing(p)
     end
 
     @testset "gmsm" begin
