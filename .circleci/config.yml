@@ -8,10 +8,5 @@ jobs:
       - image: julia:1.7
     steps:
       - run:
-          name: Install and Test this package
-          docker:
-      - image: julia:1.7
-    steps:
-      - run:
           command: julia -e 'using Pkg; Pkg.add("Coverage"); Pkg.add(url="https://github.com/bencardoen/ERGO.jl.git"); Pkg.test("ERGO");'
          
