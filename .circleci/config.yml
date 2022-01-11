@@ -7,8 +7,11 @@ jobs:
     docker:
       - image: julia:1.7
     steps:
-      - checkout
       - run:
           name: Install and Test this package
-          command: julia -e 'using Pkg; Pkg.update(); Pkg.activate("."); Pkg.build("ERGO"); Pkg.add("Coverage"), Pkg.test("ERGO", coverage=true); using Coverage; Codecov.submit(Codecov.process_folder());'
+          docker:
+      - image: julia:1.7
+    steps:
+      - run:
+          command: julia -e 'using Pkg; Pkg.add("Coverage"); Pkg.add(url="https://github.com/bencardoen/ERGO.jl.git"); Pkg.test("ERGO", coverage=true); using Coverage; Codecov.submit(Codecov.process_folder());'
          
