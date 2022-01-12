@@ -2,7 +2,7 @@ name = "ERGO"
 uuid = "273a6d5c-81ba-41a9-bdcb-eb98fb5b048d"
 license = "AGPLv3"
 authors = ["Ben Cardoen <bcardoen@sfu.ca>"]
-version = "0.1.2"
+version = "0.831"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
