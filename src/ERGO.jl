@@ -622,13 +622,13 @@ function ifc(images, randomize=false, seed=0, step=1)
         dist += abs(ith-jth)
         if imgi == nothing
             imgi = Images.load(images[ith])
-            means[_ith] = Statistics.mean(imgi)
-            stds[_ith] = Statistics.std(imgi)
+            means[_ith] = Statistics.mean(Float64.(imgi))
+            stds[_ith] = Statistics.std(Float64.(imgi))
         end
         imgj = Images.load(images[jth])
         mean_i = means[_ith]
-        means[_ith+1] = mean_j = Statistics.mean(imgj)
-        stds[_ith+1] = Statistics.std(imgj)
+        means[_ith+1] = mean_j = Statistics.mean(Float64.(imgj))
+        stds[_ith+1] = Statistics.std(Float64.(imgj))
         rij = sum((imgi .- mean_i).*(imgj .- mean_j)) / (√( sum((imgi .- mean_i).^2)) * √( sum((imgj .- mean_j).^2)) )
         @assert(-1 <= rij <= 1)
         rijs[_ith] = rij

@@ -1,0 +1,42 @@
+BootStrap: docker
+From: fedora:35
+
+
+%post
+    dnf install -y wget unzip openssh-clients git
+    cd /opt
+    git clone https://github.com/bencardoen/ERGO.jl
+    wget https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.1-linux-x86_64.tar.gz
+    mkdir -p /opt/julia
+    mv julia-1.7.1-linux-x86_64.tar.gz /opt/julia
+    cd /opt/julia
+    tar -xf julia-1.7.1-linux-x86_64.tar.gz
+    export PATH=/opt/julia/julia-1.7.1/bin:$PATH
+    mkdir -p /opt/juliadepot
+    export JULIA_DEPOT_PATH=/opt/juliadepot
+    cd /opt/ERGO.jl
+    julia --project=/opt/ERGO.jl -e 'using Pkg; Pkg.update(); Pkg.instantiate()'
+    julia --project=/opt/ERGO.jl -e 'using ERGO'
+    julia --project=/opt/ERGO.jl -e 'using Pkg; Pkg.build("ERGO")'
+    julia --project=/opt/ERGO.jl -e 'using Pkg; Pkg.test("ERGO")'
+    rm -rf /opt/juliadepot/logs
+    ln -s /dev/shm/ /opt/juliadepot/logs
+
+%environment
+    export LC_ALL=C
+    export PATH=/opt/julia/julia-1.7.1/bin:$PATH
+    export JULIA_DEPOT_PATH=/opt/juliadepot
+
+%runscript
+    echo "Container was created $NOW"
+    echo "Arguments received: $*"
+    echo pwd
+    exec echo "$@"
+
+%labels
+    Author Ben Cardoen, bcardoen@sfu.ca
+    Version v0.0.1
+
+%help
+    This is a container to offer ERGO without altering the local user environment, for testing purposes.
+    singularity exec julia --project=/opt/ERGO.jl

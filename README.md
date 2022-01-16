@@ -8,6 +8,18 @@ This repository holds the source accompanying our [IEEE Transactions in Medical 
 ### Coverage
 [![codecov](https://codecov.io/gh/bencardoen/ERGO.jl/branch/main/graph/badge.svg?token=8UFYOHZTOU)](https://codecov.io/gh/bencardoen/ERGO.jl)
 
+
+# Table of contents
+1. [Repository organization](#introduction)
+2. [Installation](#install)
+   1. [Singularity](#singularity)
+   2. [Julia Package](#julia)
+3. [Visualization of algorithm](#visualization)
+3. [Potential use cases](#usecases)
+4. [Data](#data)
+6. [Running.](#running)
+
+<a name="introduction"></a>
 ### Repository organization
 
 [ERGO](https://github.com/bencardoen/ERGO) has 2 stages:
@@ -19,7 +31,6 @@ This repository holds the Julia code for the emitter localization stage (GO).
 All files in this repository are licensed under **Affero GPL v 3**, copyright 2018-2021 Ben Cardoen.
 The software was developed in a multidisciplinary collaboration between the labs of Prof. Ghassan Hamarneh, Prof. Ivan Robert Nabi, and Prof. Keng C. Chou.
 
-### Repository organization
 This project (ERGO) has 2 stages:
 - Localization : ER**GO**.jl (this repository)
 - Counting/Density estimation : **ER**GO.py https://github.com/bencardoen/ERGO.py
@@ -28,6 +39,7 @@ All files, with exception of the files in ./data, are licensed under [**Affero G
 
 The software was developed in a multidisciplinary collaboration between the labs of [Prof. Ghassan Hamarneh](https://www.medicalimageanalysis.com/ghassans-bio), [Prof. Ivan Robert Nabi](https://www.bme.ubc.ca/person/ivan-nabi/), and [Prof. Keng C. Chou](https://www.chem.ubc.ca/keng-chou). This project could not have been realized without my other co-authors: Hanene Ben Yedder, and Anmol Sharma.
 
+<a name="visualization"></a>
 #### Visualization of algorithm
 
 ![Visualization of the ROI localization algorithm](figure3.png)
@@ -47,12 +59,13 @@ Overlapping ROIs are intentional, to ensure each ROI is centered on a presumed e
 
 Note how ERGO.jl only misses 1 emission, that is in intensity indistinguishable from background (top left corner).
 
+<a name="usecases"></a>
 #### Potential use cases:
 - denoising : filter frame where density = 0
 - enhance localization : knowing only k emitters are present, the localization problem becomes easier
 - (real time) acquisition optimization : e.g. optimize 1 emitter per ROI for optimal localization & ideal signal separation
 
-##### Performance
+#### Performance
 On a not so fast laptop with SSD, it's not unusual to get 250FPS in processing speed. Note that the code can be parallelized, and optimized in multiple places, drastically increasing FPS, but FPS of exceeding real time (60) is sufficient for our applications.
 
 
@@ -63,14 +76,42 @@ On a not so fast laptop with SSD, it's not unusual to get 250FPS in processing s
   - example usage (need jupyter)
 To run the notebook examples, you need [Jupyter](https://jupyter.org/) and a [Julia kernel](https://github.com/JuliaLang/IJulia.jl).
 
+<a name="data"></a>
 ### Data
 You can download the data used at : http://bigwww.epfl.ch/smlm/challenge2016/datasets/MT0.N1.HD/Data/data.html
 
 For your convenience, the data is provided (I make no claim or license to this data, rights belong to original owners) in folder ./data.
 
+<a name="installation"></a>
 ### Installation
-You need [Julia 1.6.2](https://julialang.org/downloads/).
-This project was originally developed on v1.4.x, but I recommend v1.6.x for speed and features.
+
+<a name="singularity"></a>
+#### Singularity
+Install [Singularity](https://sylabs.io/docs/).
+
+Then you have the option to either build (if you have sudo access) the image, or download a prebuilt one.
+Both come with Julia 1.7.1 and ERGO code + all dependencies.
+Download:
+```bash
+singularity pull library://bcvcsert/default/ergo_f35_j1.7:0.0.1
+```
+or build
+```bash
+sudo singularity build ergo.sif singularity.def
+```
+Then to execute code
+```bash
+singularity exec ergo_f35_j1.7:0.0.1.sif julia --project=/opt/ERGO.jl -e 'your code here'
+```
+Or use interactively
+```bash
+singularity shell ergo_f35_j1.7:0.0.1.sif
+Singularity> julia --project=/opt/ERGO.jl # For interactive shell
+```
+<a name="julia"></a>
+#### Local Julia
+You need [Julia 1.6.2](https://julialang.org/downloads/) or higher.
+This project was originally developed on v1.4.x, but I recommend v1.6.x > for speed and features.
 Note that if you decide to use older version, please run the tests before you do anything else.
 
 The below commands show the fastest way to get started.
@@ -90,6 +131,7 @@ The below screen recording shows how these instructions should look in execution
 
 ![Installation process](install.gif)
 
+<a name="running"></a>
 ### Running
 See notebooks/example.ipynb for a workflow used in the paper
 
