@@ -93,7 +93,7 @@ Then you have the option to either build (if you have sudo access) the image, or
 Both come with Julia 1.7.1 and ERGO code + all dependencies.
 Download:
 ```bash
-singularity pull library://bcvcsert/default/ergo_f35_j1.7:0.0.1
+singularity pull --arch amd64 library://bcvcsert/ergo/ergo_f35_j1.7:0.0.1
 ```
 or build
 ```bash
