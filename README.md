@@ -88,6 +88,7 @@ For your convenience, the data is provided (I make no claim or license to this d
 <a name="singularity"></a>
 #### Singularity
 Install [Singularity](https://sylabs.io/docs/).
+To run Singularity on Windows, set up [WSL2](https://www.blopig.com/blog/2021/09/using-singularity-on-windows-with-wsl2/).
 
 Then you have the option to either build (if you have sudo access) the image, or download a prebuilt one.
 Both come with Julia 1.7.1 and ERGO code + all dependencies.
