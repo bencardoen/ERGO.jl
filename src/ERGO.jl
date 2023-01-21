@@ -24,6 +24,7 @@ import Random
 import Glob
 import Statistics
 import JSON
+using Colocalization
 using LinearAlgebra
 import ProgressMeter.@showprogress
 
@@ -31,19 +32,19 @@ import ProgressMeter.@showprogress
 export parseFrame, writeTrainingData, gmsm, gm, check, to_cc, harmonic_pair, geom_pair, peaks, centernorm,
 buildAdjMat, scoreCC, framecorrelation, parseFixedImages, parseFixedFrame, writeTrainingData,
 findCentroids, buildGraph, buildSparseGraph, connectedComponents, collect_results, procresults,
-centernorm, normimg, tomask, aszero, mcc, pearsoncorrelation, ifc
+centernorm, normimg, mcc, pearsoncorrelation, ifc
 
 
-"""
-    tomask(img)
-
-Utility function to binarize argument
-"""
-function tomask(img)
-    c = copy(img)
-    c[c .> zero(eltype(img))] .= oneunit(eltype(img))
-    return Images.Gray{Images.N0f8}.(c)
-end
+# """
+#     tomask(img)
+#
+# Utility function to binarize argument
+# """
+# function tomask(img)
+#     c = copy(img)
+#     c[c .> zero(eltype(img))] .= oneunit(eltype(img))
+#     return Images.Gray{Images.N0f8}.(c)
+# end
 
 """
 	normimg(img[, center=false])
@@ -60,7 +61,7 @@ function normimg(img, center=false)
 		return _normimg(img, center)
 	end
 	if length(size(img)) == 3
-		res = aszero(img)
+		res = Colocalization.aszero(img)
 		for z in 1:size(img, 3)
 			res[:,:,z] = _normimg(img[:,:,z],center)
 		end
@@ -76,15 +77,15 @@ function _normimg(img, center=false)
 	end
 	return img ./ maximum(img)
 end
-
-"""
-	aszero(x)
-
-Utility function to return a zeroed copy of the argument
-"""
-function aszero(x)
-    return zeros(eltype(x), size(x))
-end
+#
+# """
+# 	aszero(x)
+#
+# Utility function to return a zeroed copy of the argument
+# """
+# function aszero(x)
+#     return zeros(eltype(x), size(x))
+# end
 
 """
 	Report results in a dataframe

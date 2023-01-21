@@ -2,10 +2,11 @@ name = "ERGO"
 uuid = "273a6d5c-81ba-41a9-bdcb-eb98fb5b048d"
 license = "AGPLv3"
 authors = ["Ben Cardoen <bcardoen@sfu.ca>"]
-version = "0.831"
+version = "0.831.0"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+Colocalization = "5deedb61-f8ac-43ca-82f0-d70c51e04289"
 Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"

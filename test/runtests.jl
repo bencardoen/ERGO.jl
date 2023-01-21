@@ -192,28 +192,4 @@ import Images
         @test all(a .== b)
     end
 
-    @testset "tomask" begin
-        Random.seed!(42)
-        X = 10
-        Y = 20
-        Z = 2
-        img1 = rand(X,Y,Z)
-        i2 = copy(img1)
-        msk = tomask(img1)
-        @test all(i2 .== img1)
-        @test all(msk[i2 .>0].== 1)
-        @test all(msk[i2 .== 0].== 0)
-    end
-
-    @testset "aszero" begin
-        Random.seed!(42)
-        X = 10
-        Y = 20
-        Z = 2
-        img1 = rand(X,Y,Z)
-        img2 = copy(img1)
-        img0 = aszero(img1)
-        @test all(img0 .== zero(eltype(img1)))
-        @test all(img1 .== img2)
-    end
 end

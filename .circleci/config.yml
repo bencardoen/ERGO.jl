@@ -8,6 +8,6 @@ jobs:
       - image: julia:1.7
     steps:
       - run:
-          command: julia -e 'using Pkg; Pkg.add("Coverage"); Pkg.add(url="https://github.com/bencardoen/ERGO.jl.git"); Pkg.test("ERGO", coverage=true);'
+          command: julia -e 'using Pkg; Pkg.add("Coverage"); Pkg.add(url="https://github.com/bencardoen/Colocalization.jl.git"), Pkg.add(url="https://github.com/bencardoen/ERGO.jl.git"); using Coverage; Pkg.test("ERGO", coverage=true);'
       - run:
           command: julia -e 'using Pkg; cd(Pkg.dir("ERGO")); using Coverage; Codecov.submit(Codecov.process_folder())'
