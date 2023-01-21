@@ -90,8 +90,8 @@ uuid = "944b1d66-785c-5afd-91f1-9de20f533193"
 version = "0.7.0"
 
 [[deps.Colocalization]]
-deps = ["DataFrames", "Distributions", "ImageFiltering", "Images", "ProgressMeter", "Random", "Statistics", "Test"]
-git-tree-sha1 = "308119b71fd4b5d482589ec5b0304cd95d6ee86f"
+deps = ["DataFrames", "Distributions", "ImageFiltering", "Images", "Logging", "ProgressMeter", "Random", "Statistics", "Test"]
+git-tree-sha1 = "1ac766ebc70c199147ef541228c9682386c375e2"
 repo-rev = "main"
 repo-url = "https://github.com/bencardoen/Colocalization.jl.git"
 uuid = "5deedb61-f8ac-43ca-82f0-d70c51e04289"
