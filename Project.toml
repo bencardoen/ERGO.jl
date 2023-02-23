@@ -2,7 +2,7 @@ name = "ERGO"
 uuid = "273a6d5c-81ba-41a9-bdcb-eb98fb5b048d"
 license = "AGPLv3"
 authors = ["Ben Cardoen <bcardoen@sfu.ca>"]
-version = "0.831.0"
+version = "0.831.1"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
@@ -22,6 +22,22 @@ ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+
+[compat]
+julia = "1.7"
+CSV = "0.10.9"
+Colocalization = "0.1.1"
+Colors = "0.12.10"
+DataFrames = "1.5.0"
+Distributions = "0.25.82"
+Glob = "1.3.0"
+ImageMagick = "1.2.2"
+Images = "0.25.2"
+JSON = "0.21.3"
+LoggingExtras = "1.0.0"
+ProgressBars = "1.4.1"
+ProgressMeter = "1.7.2"
+StatsBase = "0.33.21"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
