@@ -26,7 +26,7 @@ StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 [compat]
 julia = "1.7"
 CSV = "0.10.9"
-Colocalization = "^0.1"
+Colocalization = "0.2.2"
 Colors = "0.12.10"
 DataFrames = "1.5.0"
 Distributions = "0.25.82"
